@@ -623,10 +623,10 @@ export default function Home() {
               { icon: "💰", title: "Harga Terjangkau", desc: "Harga kompetitif langsung dari produsen tanpa perantara." },
               { icon: "🌱", title: "Sertifikat Eco", desc: "Produk bersertifikat ramah lingkungan dari lembaga terpercaya." },
             ].map((w) => (
-              <div className="why-card" key={w.title}>
-                <div className="why-icon">{w.icon}</div>
-                <div className="why-title">{w.title}</div>
-                <div className="why-desc">{w.desc}</div>
+              <div className="why-card text-amber-50" key={w.title}>
+                <div className="why-icon text-amber-50">{w.icon}</div>
+                <div className="why-title text-amber-50">{w.title}</div>
+                <div className="why-desc text-amber-50">{w.desc}</div>
               </div>
             ))}
           </div>
