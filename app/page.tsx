@@ -68,7 +68,7 @@ const PRODUCTS: Product[] = [
     desc: "Motif batik khas Sukoharjo, dibuat dari kertas limbah lokal. Seni dan fungsi dalam satu.",
     price: 125000,
     unit: "m²",
-    image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1604187351574-c75ca79f5807?w=600&q=80",
     badge: "Eksklusif",
   },
 ];
@@ -89,7 +89,6 @@ export default function Home() {
   const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
   const itemCount = cart.reduce((s, i) => s + i.qty, 0);
 
-  // Close cart on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (cartRef.current && !cartRef.current.contains(e.target as Node)) {
@@ -167,6 +166,7 @@ export default function Home() {
           --shadow-lg: 0 20px 60px rgba(15,46,26,.2);
           --radius:    14px;
           --radius-sm: 8px;
+          --max-w:     1200px;
         }
         body {
           font-family: 'Plus Jakarta Sans', sans-serif;
@@ -308,15 +308,24 @@ export default function Home() {
         .stat-label { font-size: .75rem; opacity: .7; margin-top: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
 
         /* ── SECTION ── */
-        .section { max-width: 1200px; margin: 0 auto; padding: 64px 24px; }
+        .section {
+          max-width: var(--max-w);
+          margin: 0 auto;
+          padding: 64px 24px;
+        }
         .section-header { margin-bottom: 40px; }
-        .section-title { font-family: 'Fraunces', serif; font-size: clamp(1.6rem,3vw,2.2rem); font-weight: 700; color: var(--green-900); }
+        .section-title {
+          font-family: 'Fraunces', serif;
+          font-size: clamp(1.6rem,3vw,2.2rem);
+          font-weight: 700;
+          color: var(--green-900);
+        }
         .section-sub { color: var(--text-muted); font-size: .9rem; margin-top: 8px; font-weight: 500; }
 
-        /* ── GRID ── */
+        /* ── GRID — fixed 3 columns ── */
         .product-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(290px,1fr));
+          grid-template-columns: repeat(3, 1fr);
           gap: 24px;
         }
 
@@ -445,11 +454,15 @@ export default function Home() {
         }
         footer strong { color: #fff; }
 
+        @media (max-width: 900px) {
+          .product-grid { grid-template-columns: repeat(2, 1fr); }
+        }
         @media (max-width: 640px) {
           .nav-links { display: none; }
           .hero { padding: 56px 20px; min-height: 360px; }
           .hero-stats { gap: 24px; }
           .cart-dropdown { width: 320px; right: -8px; }
+          .product-grid { grid-template-columns: 1fr; }
         }
       `}</style>
 
